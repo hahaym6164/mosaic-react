@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import Students from './components/students';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-    <Students/>
+      <Students />
     </div>
   );
 }
