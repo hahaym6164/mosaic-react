@@ -1,8 +1,11 @@
 .App {
   text-align: center;
+  background: #dfdfdf;
+  padding: 100px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
 }
-
-.App-logo {
+  .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -37,13 +40,50 @@
   }
 }
 .container {
-  position: absolute;
-  height: 1000px;
-  width: 60%;
-  top: 100px;
-  left: auto;
-  overflow: auto;
+overflow: auto;
+padding-top: 50px;
+margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+text-align: center;
+width: 80%;
+background: white;
+
 }
 .grade {
   list-style-type: none;
+}
+.student{
+  display: flex;
+  padding:30px;
+  position: relative;
+}
+.avatar{
+  width: 200px;
+  border: 1px solid;
+  border-radius: 100%;
+}
+.student-info,.grades{
+  margin: auto;
+}
+.list-info{
+  list-style: none;
+  text-align: left;
+  padding: 20px;
+
+}
+.title{
+  width: 100px;
+  display: inline-block;  
+}
+.expand-btn{
+  position: absolute;
+  right: 20px;
+  /* width: 30px;
+  height: 30px; */
+  font-size: 3em;
+  cursor: pointer;
+  background: white;
+  border: none;
 }

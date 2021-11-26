@@ -33,30 +33,51 @@ export default class students extends Component {
         console.log(err);
       })
   }
+  expandgrades(){
+    return
+ 
+  }
   render() {
     let { studentList } = this.state;
     let testList = this.state.testList;
 
-    return (<div className="container">
+    return (
+      <div>
+      <div className="container">
+      
       {studentList.map((i) => (
-        <div className="student" key={i.id} >
+        <div key={i.id}>
+          {/* use showGrages to switch the show grades */}
+          {i.showGrades=true}
 
-          <p className="name">{i.firstName} {i.lastName}</p>
-          <img className="avatar" src={i.pic}></img>
+          {console.log(i,'see show')}
+                 <h1>{i.firstName} {i.lastName}</h1>
+        <div className="student"  >
 
-          <p>City: {i.city}</p>
-          <p>company: {i.company}</p>
-          <p>email: {i.email}</p>
-          <p>skill: {i.skill}</p>
-          <ul className="grades">
-            {i.grades.map(grade => (
-              <li className="grade">Grade:{grade}</li>
+          <div>  
+          <img className="avatar" src={i.pic}></img></div>
+        <div className="student-info"> 
+        <ul className="list-info">
+        <li><span className={i.showGrades+ " title"}>City: </span>{i.city}</li>
+          <li><span className="title">Company: </span>{i.company}</li>
+          <li><span className="title">Cmail: </span>{i.email}</li>
+          <li><span className="title">Skill:</span> {i.skill}</li>
+        </ul>
+
+        <ul className="grades" id={i.id}>
+            {i.grades.map((grade,index) => (
+              <li key={index} className="grade">Grade:{grade}</li>
             ))}
           </ul>
+         </div>
+         <button className="expand-btn" onClick={this.expandgrades()}><i className="fas fa-plus"></i></button>
+
+        </div>
         </div>
       ))}
       {console.log(studentList)}
-
-    </div>);
+      </div>
+      </div>
+    );
   }
 }
