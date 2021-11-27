@@ -1,18 +1,16 @@
 import React, { Component, useState } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-
+import Searchbar from "./searchbar";
 const url = "https://www.hatchways.io/api/assessment/students"
 
 export default class students extends Component {
   constructor(props) {
     super(props);
-
-    // this.componentDidMount()
     this.state = {
       studentList: []
-
     }
+    
   }
   componentDidMount() {
     axios
@@ -25,22 +23,21 @@ export default class students extends Component {
       })
   }
   expandGrades(input) {
-    this.setState(state => {
-      return state.studentList[input].showGrades = !state.studentList[input].showGrades
-      // console.log('expand', state.studentList[input].showGrades)
+    let update = this.state.studentList
+    update[input].showGrades = !update[input].showGrades
+    
+    this.setState({
+      studentList : update
     })
   }
   render() {
     let { studentList } = this.state;
-
     return (
       <div>
         <div className="container">
-
+              <Searchbar/>
           {studentList.map((i, index) => (
             <div key={i.id}>
-              {/* use showGrages to switch the show grades */}
-              {i.showGrades = true}
 
               {/* {console.log(studentList[index], i)} */}
               <h1>{i.firstName} {i.lastName}</h1>
@@ -49,20 +46,20 @@ export default class students extends Component {
                 <div>
                   <img className="avatar" src={i.pic}></img></div>
                 <div className="student-info">
-                  <ul className="list-info">
-                    <li><span className="title">City: </span>{i.city}</li>
-                    <li><span className="title">Company: </span>{i.company}</li>
-                    <li><span className="title">Email: </span>{i.email}</li>
-                    <li><span className="title">Skill:</span> {i.skill}</li>
-                  </ul>
+                  <div className="list-info">
+                    <p><span className="title">City: </span>{i.city}</p>
+                    <p><span className="title">Company: </span>{i.company}</p>
+                    <p><span className="title">Email: </span>{i.email}</p>
+                    <p><span className="title">Skill:</span> {i.skill}</p>
+                  </div>
 
-                  <ul className={(this.state.studentList[index].showGrades ? " " : "hidden") + " grades"}>
+                  <div className={(i.showGrades ? " " : "hidden") + " grades"}>
                     {i.grades.map((grade, index) => (
-                      <li key={index} className="grade">Grade:{grade}</li>
+                      <p key={index} className="grade"><span className="title" >Grade:</span>  {grade}</p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-                <button className="expand-btn" onClick={this.expandGrades.bind(this, index)}><i className="fas fa-plus"></i></button>
+                <button className="expand-btn" onClick={this.expandGrades.bind(this, index,i)}><i className="fas fa-plus"></i></button>
 
               </div>
             </div>
